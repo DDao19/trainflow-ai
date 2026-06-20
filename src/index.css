@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* @theme {
+  --font-goth: "Special Gothic Expanded One", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  --color-muted: #a1a1aa;
+  --color-border: #27272a;
+  --color-card: #18181b;
+  --color-accent: #a3e635;
+  --color-accent-hover: #84cc16;
+} */
+
+@theme {
+  /* Fonts */
+  --font-goth: "Special Gothic Expanded One", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Base Colors */
+  --color-background: #0f172a; /* Slate Navy */
+  --color-foreground: #f8fafc; /* Soft White */
+  --color-muted: #94a3b8; /* Slate Gray */
+  --color-border: #334155; /* Slate Border */
+  --color-card: #1e293b; /* Card Background */
+
+  /* Brand */
+  --color-accent: #2563eb; /* Athletic Blue */
+  --color-accent-hover: #1d4ed8;
+
+  /* Semantic Colors */
+  --color-success: #22c55e; /* Completed Workouts */
+  --color-warning: #f59e0b; /* Notifications */
+  --color-danger: #ef4444; /* Errors/Delete */
+}
+
+@layer base {
+  html {
+    font-family: var(--font-inter);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Override Better Auth skeleton colors */
+  [data-slot="skeleton"],
+  .animate-pulse {
+    background-color: var(--color-border) !important;
+  }
+}
