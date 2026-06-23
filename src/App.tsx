@@ -15,7 +15,7 @@ export default function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/Profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/auth/:pathname" element={<Auth />} />
             <Route path="/account/:pathname" element={<Account />} />
           </Routes>
