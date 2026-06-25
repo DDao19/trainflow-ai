@@ -4,9 +4,9 @@ const baseStyles =
   "inline-flex items-center justify-center rounded-xl px-5 py-2.5 font-medium transition-colors cursor-pointer";
 
 const variants = {
-  primary: "bg-accent text-white hover:bg-accent-hover",
+  primary: "bg-accent text-white hover:bg-accent-hover" /*og text-black*/,
   secondary: "bg-card text-foreground border border-border hover:bg-border",
-  ghost: "text-muted hover:text-foreground hover:bg-card",
+  ghost: "hover:text-foreground hover:bg-card" /*removed text-muted*/,
 };
 
 const sizes = {

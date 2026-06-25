@@ -1,52 +1,79 @@
+@import "@neondatabase/neon-js/ui/tailwind";
 @import "tailwindcss";
 
-/* @theme {
-  --font-goth: "Special Gothic Expanded One", sans-serif;
-  --font-inter: "Inter", sans-serif;
-
-  --color-background: #0a0a0a;
-  --color-foreground: #fafafa;
-  --color-muted: #a1a1aa;
-  --color-border: #27272a;
-  --color-card: #18181b;
-  --color-accent: #a3e635;
-  --color-accent-hover: #84cc16;
-} */
+/* Hijack Neon's Variable Globally */
 
 @theme {
   /* Fonts */
   --font-goth: "Special Gothic Expanded One", sans-serif;
   --font-inter: "Inter", sans-serif;
 
-  /* Base Colors */
-  --color-background: #0f172a; /* Slate Navy */
-  --color-foreground: #f8fafc; /* Soft White */
-  --color-muted: #94a3b8; /* Slate Gray */
-  --color-border: #334155; /* Slate Border */
-  --color-card: #1e293b; /* Card Background */
+  /* Base Layout */
+  --color-background: #0f172a; /* slate navy */
+  --color-surface: #111827; /* optional intermediate layer (missing in your version but useful) */
+  --color-card: #1e293b; /* elevated UI blocks */
+
+  /* Text */
+  --color-foreground: #f8fafc; /* primary text */
+  --color-muted: #94a3b8; /* secondary text */
+  --color-dim: #64748b; /* placeholders / helper text */
+
+  /* Borders */
+  --color-border: #334155; /* slightly stronger than before for better separation */
 
   /* Brand */
-  --color-accent: #2563eb; /* Athletic Blue */
+  --color-accent: #2563eb; /* primary action */
   --color-accent-hover: #1d4ed8;
+  --color-accent-active: #1e40af;
 
-  /* Semantic Colors */
-  --color-success: #22c55e; /* Completed Workouts */
-  --color-warning: #f59e0b; /* Notifications */
-  --color-danger: #ef4444; /* Errors/Delete */
+  /* Semantic */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #38bdf8;
+
+  /* Inputs (important for login UX consistency) */
+  --color-input-bg: #111827;
+  --color-input-border: #334155;
+  --color-input-focus: #2563eb;
+
+  /* Shadows (this is what will make it feel “premium SaaS”) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Neon overrides (kept, but cleaned) */
+  --color-card-foreground: var(--color-foreground);
+  --neon-card-foreground: var(--color-foreground);
+  --neon-muted-foreground: var(--color-muted);
+  --neon-border: var(--color-border);
+  --neon-input: var(--color-input-border);
+  --neon-primary: var(--color-accent);
+  --neon-destructive: var(--color-danger);
 }
 
 @layer base {
+  #root {
+    color: var(--color-foreground);
+  }
+
   html {
     font-family: var(--font-inter);
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    /* background-color: var(--color-background);
+    color: var(--color-foreground); */
   }
 
   body {
     margin: 0;
     min-height: 100vh;
     background-color: var(--color-background);
-    color: var(--color-foreground);
+    /* color: var(--color-foreground); */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
