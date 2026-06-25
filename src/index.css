@@ -56,6 +56,8 @@
   --neon-input: var(--color-input-border);
   --neon-primary: var(--color-accent);
   --neon-destructive: var(--color-danger);
+  --neon-ring: var(--color-input-focus);
+  --neon-card: red;
 }
 
 @layer base {

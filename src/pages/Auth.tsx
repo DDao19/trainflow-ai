@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 export default function Auth() {
   const { pathname } = useParams();
-  console.log(pathname);
+
   return (
     <div className="relative min-h-screen bg-background flex items-center justify-center px-6 overflow-hidden">
       {/* Glow */}
@@ -11,7 +11,7 @@ export default function Auth() {
         <div className="h-125 w-125 rounded-full bg-blue-500/25 blur-[140px]" />
       </div>
 
-      <div className="max-w-md w-full relative z-10">
+      <div className="max-w-md w-full relative z-10 flex justify-center">
         <AuthView pathname={pathname} />
       </div>
     </div>

@@ -1,8 +1,16 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 export default function Home() {
+  const { user, loading } = useAuth();
+
+  if (user && !loading) {
+    return <Navigate to="/profile" replace />;
+  }
+
   return (
     <div>
-      <h1>Homepage. TrainFlow AI</h1>
-      <p>This is my TrainFlow project</p>
+      <h1>Home Page</h1>
     </div>
   );
 }
