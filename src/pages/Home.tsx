@@ -1,9 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Home() {
   const { user, loading } = useAuth();
 
+  // If use is Logged In, redirect to Profile Page
   if (user && !loading) {
     return <Navigate to="/profile" replace />;
   }

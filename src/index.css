@@ -2,6 +2,24 @@
 @import "tailwindcss";
 
 /* Hijack Neon's Variable Globally */
+:root {
+  /* Scope colors specifically to Neon Auth views */
+  --neon-primary: var(--color-accent);
+  --neon-primary-hover: var(--color-accent-hover);
+  --neon-background: var(--color-background);
+  --neon-primary-foreground: var(--color-foreground);
+  --neon-foreground: var(--color-foreground);
+  --neon-card: pink;
+
+  --color-card-foreground: var(--color-foreground);
+  --neon-card-foreground: var(--color-foreground);
+  --neon-muted-foreground: var(--color-muted);
+  --neon-border: var(--color-border);
+  --neon-input: var(--color-input-border);
+  /* --neon-primary: var(--color-accent); */
+  --neon-destructive: var(--color-danger);
+  --neon-ring: var(--color-input-focus);
+}
 
 @theme {
   /* Fonts */
@@ -47,23 +65,12 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
-
-  /* Neon overrides (kept, but cleaned) */
-  --color-card-foreground: var(--color-foreground);
-  --neon-card-foreground: var(--color-foreground);
-  --neon-muted-foreground: var(--color-muted);
-  --neon-border: var(--color-border);
-  --neon-input: var(--color-input-border);
-  --neon-primary: var(--color-accent);
-  --neon-destructive: var(--color-danger);
-  --neon-ring: var(--color-input-focus);
-  --neon-card: red;
 }
 
 @layer base {
-  #root {
+  /* #root {
     color: var(--color-foreground);
-  }
+  } */
 
   html {
     font-family: var(--font-inter);

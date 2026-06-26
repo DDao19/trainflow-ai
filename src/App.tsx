@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import Account from "./pages/Account";
 import Navbar from "./components/layout/Navbar";
-import AuthProvider from "./context/AuthContext";
+import AuthProvider from "./context/AuthProvider";
 
 export default function App() {
   return (

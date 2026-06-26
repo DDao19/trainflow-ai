@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { SportShoe } from "lucide-react";
 import { Button } from "../ui/Button";
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
 import { UserButton } from "@neondatabase/neon-js/auth/react";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Navbar() {
   const { user } = useAuth();

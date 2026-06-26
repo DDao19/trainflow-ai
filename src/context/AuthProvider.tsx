@@ -1,26 +1,14 @@
-import {
-  createContext,
-  type ReactNode,
-  useState,
-  useEffect,
-  useContext,
-} from "react";
-import type { User } from "../types";
+import { type ReactNode, useState, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 import { authClient } from "../lib/auth";
-
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-}
-
-const AuthContext = createContext<AuthContextType | null>(null);
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [neonUser, setNeonUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Check if user is already logged in when the app loads
   useEffect(() => {
+    console.log("Mounted");
     async function loadUser() {
       try {
         // Retrieve the current session data
@@ -48,12 +36,4 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
 }
