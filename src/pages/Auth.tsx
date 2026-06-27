@@ -1,7 +1,9 @@
 import { AuthView } from "@neondatabase/neon-js/auth/react/ui";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Auth() {
+  const { user } = useAuth();
   const { pathname } = useParams();
 
   return (
@@ -12,7 +14,8 @@ export default function Auth() {
       </div>
 
       <div className="max-w-md w-full relative z-10 flex justify-center">
-        <AuthView pathname={pathname} />
+        {/* <AuthView pathname={pathname} /> */}
+        {user ? <Navigate to="/profile" /> : <AuthView pathname={pathname} />}
       </div>
     </div>
   );

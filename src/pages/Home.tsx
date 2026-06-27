@@ -3,8 +3,8 @@ import { useAuth } from "../hooks/useAuth";
 
 export default function Home() {
   const { user, loading } = useAuth();
-
-  // If use is Logged In, redirect to Profile Page
+  console.log("Home Page", user);
+  // If user is Logged In, redirect to Profile Page
   if (user && !loading) {
     return <Navigate to="/profile" replace />;
   }
