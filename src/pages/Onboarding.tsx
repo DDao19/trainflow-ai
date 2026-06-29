@@ -1,12 +1,18 @@
+import { useState } from "react";
 import { RedirectToSignIn, SignedIn } from "@neondatabase/neon-js/auth/react";
 import { useAuth } from "../hooks/useAuth";
+import { Card } from "../components/ui/Card";
+import { Select } from "../components/ui/Select";
+import { Textarea } from "../components/ui/Textarea";
+import { Button } from "../components/ui/Button";
+import { ArrowRight } from "lucide-react";
 
 const goalOptions = [
   { value: "bulk", label: "Build Muscle (Bulk)" },
   { value: "cut", label: "Lose Fat (Cut)" },
   { value: "recomp", label: "Body Recomposition" },
   { value: "strength", label: "Body Strength" },
-  { value: "stamina", label: "Improve Stamina" },
+  { value: "endurance", label: "Improve Edurance" },
 ];
 
 const experienceOptions = [
@@ -24,10 +30,10 @@ const daysOptions = [
 ];
 
 const sessionOptions = [
-  { value: "30", lable: "30 minutes" },
-  { value: "45", lable: "45 minutes" },
-  { value: "60", lable: "60 minutes" },
-  { value: "90", lable: "90 minutes" },
+  { value: "30", label: "30 minutes" },
+  { value: "45", label: "45 minutes" },
+  { value: "60", label: "60 minutes" },
+  { value: "90", label: "90 minutes" },
 ];
 
 const equipmentOptions = [
@@ -37,7 +43,7 @@ const equipmentOptions = [
 ];
 
 const splitOptions = [
-  { value: "full_body", label: "Full Body" },
+  { value: "full_body", label: "Full Body Split" },
   { value: "upper_lower", label: "Upper/Lower Split" },
   { value: "ppl", label: "Push/Pull/Legs Split" },
   { value: "custom", label: "Let AI Decide" },
@@ -45,6 +51,25 @@ const splitOptions = [
 
 export default function Onboarding() {
   const { user } = useAuth();
+  const [formData, setFormData] = useState({
+    goal: "bulk",
+    experience: "intermidiate",
+    daysPerWeek: "4",
+    sessionLength: "60",
+    equipment: "full_gym",
+    injuries: "",
+    preferredSplit: "upper_lower",
+  });
+
+  function updateForm(field: string, value: string) {
+    setFormData((prev) => {
+      return { ...prev, [field]: value };
+    });
+  }
+
+  async function handleQuestionnaire(e: React.SubmitEvent) {
+    e.preventDefault();
+  }
 
   if (!user) {
     return <RedirectToSignIn />;
@@ -54,10 +79,75 @@ export default function Onboarding() {
     <SignedIn>
       <div className="min-h-screen pt-24 pb-12 px-6">
         <div className="max-w-xl mx-auto">
-          <h1>Onboarding</h1>
           {/* Progress Indicator */}
 
           {/* Step1: Questionaire */}
+          <Card variant="bordered">
+            <h1 className="text-xl font-bold mb-2">Tell Us About Yourself</h1>
+            <p className="text-muted mb-6">
+              Help us create the perfect plan for you.
+            </p>
+            <form onSubmit={handleQuestionnaire} className="space-y-5">
+              <Select
+                id="goal"
+                label="What's your primary goal"
+                options={goalOptions}
+                value={formData.goal}
+                onChange={(e) => updateForm("goal", e.target.value)}
+              />
+              <Select
+                id="experience"
+                label="Training experience"
+                options={experienceOptions}
+                value={formData.experience}
+                onChange={(e) => updateForm("experience", e.target.value)}
+              />
+              <div className="grid grid-cols-2 gap-5">
+                <Select
+                  id="daysPerWeek"
+                  label="Days Per Week"
+                  options={daysOptions}
+                  value={formData.daysPerWeek}
+                  onChange={(e) => updateForm("daysPerWeek", e.target.value)}
+                />
+                <Select
+                  id="sessionLength"
+                  label="Session length"
+                  options={sessionOptions}
+                  value={formData.sessionLength}
+                  onChange={(e) => updateForm("sessionLength", e.target.value)}
+                />
+              </div>
+              <Select
+                id="equipment"
+                label="Equipment access"
+                options={equipmentOptions}
+                value={formData.equipment}
+                onChange={(e) => updateForm("equipment", e.target.value)}
+              />
+              <Select
+                id="preferredSplit"
+                label="Preferred training split"
+                options={splitOptions}
+                value={formData.preferredSplit}
+                onChange={(e) => updateForm("preferredSplit", e.target.value)}
+              />
+
+              <Textarea
+                id="injuries"
+                label="Any injuries or limitations? (optional)"
+                placeholder="E.g., lower back issues, shoulder impingement..."
+                rows={3}
+                value={formData.injuries}
+                onChange={(e) => updateForm("injuries", e.target.value)}
+              />
+              <div className="flex gap-3 pt-2">
+                <Button type="submit" className="flex-1 gap-2">
+                  Generate My Plan <ArrowRight />
+                </Button>
+              </div>
+            </form>
+          </Card>
 
           {/* Step2: Generating */}
         </div>
